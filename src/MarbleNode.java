@@ -1,20 +1,23 @@
-package ChineseCheckers;
-
 public class MarbleNode {
     public char marble;
+    private char friendMarble;
     public char enemyMarble;
     private boolean avail;
     
     public MarbleNode(){
-        this.marble = '-';
+        this.friendMarble = this.marble = '-';
         this.enemyMarble = ' ';
         this.avail = false;
     }
 
     public MarbleNode(char marble, char enemyMarble, boolean availability){
-        this.marble = marble;
+        this.friendMarble = this.marble = marble;
         this.enemyMarble = enemyMarble;
         this.avail = availability;
+    }
+
+    public char getFriendMarble(){
+        return this.friendMarble;
     }
 
     public boolean getAvailability(){
@@ -23,5 +26,12 @@ public class MarbleNode {
 
     public MarbleNode copy(){
         return new MarbleNode(this.marble, this.enemyMarble, this.avail);
+    }
+
+    @Override
+    public String toString() {
+        return "Marble: " + this.marble + '\n' + 
+        "Enemy Marble: " + this.enemyMarble + '\n' +
+        "Availability: " + this.avail;
     }
 }
