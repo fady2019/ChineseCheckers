@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
     static Scanner scan = new Scanner(System.in);
     public static void main(String[] args) {
-        ChineseCheckersBoard.printBoard();
+        ChineseCheckersGame.printBoard();
         
         while(true){
             System.out.println("Enter Source Cell (row col): ");
@@ -14,8 +14,9 @@ public class Main {
             int destCol = scan.nextInt();
 
             try{
-                ChineseCheckersBoard.move(srcRow, srcCol, destRow, destCol);
-                ChineseCheckersBoard.printBoard();
+                ChineseCheckersGame.humanMove(srcRow, srcCol, destRow, destCol);
+                ChineseCheckersGame.getState();
+                ChineseCheckersGame.printBoard();
             }catch(Exception ex){
                 System.out.println(ex.getMessage());
             }

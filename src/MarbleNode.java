@@ -1,7 +1,7 @@
 public class MarbleNode {
     public char marble;
     private char friendMarble;
-    public char enemyMarble;
+    private char enemyMarble;
     private boolean avail;
     
     public MarbleNode(){
@@ -18,6 +18,10 @@ public class MarbleNode {
 
     public char getFriendMarble(){
         return this.friendMarble;
+    }
+
+    public char getEnemyMarble(){
+        return this.enemyMarble;
     }
 
     public boolean getAvailability(){
