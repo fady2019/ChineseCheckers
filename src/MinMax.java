@@ -1,15 +1,63 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-class MoveInfo{
+class MoveInfo
+{
     public int srcCell = -1;
     public int destCell = -1;
     public int val;
 }
 
-public class MinMax {
+public class MinMax 
+{
+	private static ArrayList<Integer> greenIndex;
+    private static ArrayList<Integer> redIndex;
+
+    MinMax(){
+    	greenIndex = new ArrayList<>(Arrays.asList(12, 36, 38, 60, 62, 64, 84, 86, 88, 90));
+    	redIndex = new ArrayList<>(Arrays.asList(412, 386, 388, 360, 362, 364, 334, 336, 338, 340));
+    }
+    
+    private static int getCellRow(int cell,Board board){
+        return cell / board.board[0].length;
+    }
+
+    private static int getCellColl(int cell,Board board){
+        return cell % board.board[0].length;
+    }
+    
+    public static float getDictanceBetween(int p1x,int p1y,int p2x, int p2y) {
+        return (float) Math.sqrt(Math.pow(p1x - p2x, 2) + Math.pow(p1y - p2y, 2));
+    }
+    
     private static MoveInfo utilityFun(Board board){
-        return null;
+    	MoveInfo info=new MoveInfo();
+    	MarbleNode[][] CCBoard=board.board;
+    	int humandistance=0;
+    	int compDistance=0;
+    	int CountRedIndex=redIndex.size()-1;
+    	int CountGreenIndex=0;
+    	for(int i = 0 ; i < CCBoard.length ; i++) {
+    		for(int j = 0 ; j < CCBoard[i].length ; j++) {
+    			if(CCBoard[i][j].marble=='G')
+    			{
+    				int RX=getCellRow(redIndex.get(CountRedIndex),board);
+    				int RY=getCellColl(redIndex.get(CountRedIndex),board);
+    				CountRedIndex--;
+    				humandistance+=getDictanceBetween(i,j,RX,RY);
+    			}
+    			else if(CCBoard[i][j].marble=='R')
+    			{
+    				int GX=getCellRow(greenIndex.get(CountRedIndex),board);
+    				int GY=getCellColl(greenIndex.get(CountRedIndex),board);
+    				CountGreenIndex++;
+    				compDistance+=getDictanceBetween(i,j,GX,GY);
+    			}
+    		}
+    	}
+    	info.val=compDistance-humandistance;
+        return info;
     }
 
     public static MoveInfo minMax(Common.Player player, int levelNum, Board CCBoard, boolean maximizing){
@@ -56,7 +104,7 @@ public class MinMax {
                 }
             }
         }
-
+        
         return bestMove;
     }
 }

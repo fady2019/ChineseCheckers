@@ -91,7 +91,7 @@ public class Board {
 
         return CopiedBoard;
     }
-
+    
     public void print(){
         System.out.println("Red Marbles Cells");
         System.out.println(this.redMarbleCells);
