@@ -40,7 +40,8 @@ public class Board {
 
     public ArrayList<Integer> greenMarbleCells;
     public ArrayList<Integer> redMarbleCells;
-
+    public static ArrayList<Integer> redGoal = new ArrayList<>(Arrays.asList(12, 36, 38, 60, 62, 64, 84, 86, 88, 90));
+    public static ArrayList<Integer> greenGoal = new ArrayList<>(Arrays.asList(412, 386, 388, 360, 362, 364, 334, 336, 338, 340));
     public MarbleNode[][] board;
 
     Board(){
