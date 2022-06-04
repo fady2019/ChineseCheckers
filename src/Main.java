@@ -47,6 +47,7 @@ public class Main {
 
                 if(state == 1){
                     System.out.println("Human won!");
+                    break;
                 }
 
                 ChineseCheckersGame.pcMove(diffLevel);
@@ -55,6 +56,7 @@ public class Main {
 
                 if(state == -1){
                     System.out.println("PC won!");
+                    break;
                 }
             }catch(Exception ex){
                 System.out.println(ex.getMessage());

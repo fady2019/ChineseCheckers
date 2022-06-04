@@ -17,10 +17,6 @@ class MoveInfo
 
 public class MinMax 
 {
-    public static float getDistanceBetween(int p1x,int p1y,int p2x, int p2y) {
-        return (float) Math.sqrt(Math.pow(p1x - p2x, 2) + Math.pow(p1y - p2y, 2));
-    }
-    
     private static MoveInfo utilityFun(Board board){
     	MoveInfo info = new MoveInfo();
     	float humanDistance = 0;
@@ -54,8 +50,6 @@ public class MinMax
             return utilityFun(CCBoard);
         }
 
-        levelNum--;
-
         ArrayList<Integer> marblesCells;
 
         if(player == Common.Player.HUMAN){
@@ -86,7 +80,7 @@ public class MinMax
 
                 Common.Player nextPlayer = player == Common.Player.HUMAN? Common.Player.PC : Common.Player.HUMAN;
                 
-                MoveInfo moveInfo = minMax(nextPlayer, levelNum, childBoard, !maximizing);
+                MoveInfo moveInfo = minMax(nextPlayer, levelNum-1, childBoard, !maximizing);
                 moveInfo.srcCell = srcCell;
                 moveInfo.destCell = destCell;
                 

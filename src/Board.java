@@ -41,7 +41,9 @@ public class Board {
 
     // -----------------------------------------------------------------------------------------------
 
+    // this array list contains green marbles position and it gets updated when a marble moves 
     public ArrayList<Integer> greenMarbleCells;
+    // this array list contains red marbles position and it gets updated when a marble moves
     public ArrayList<Integer> redMarbleCells;
     
     public MarbleNode[][] board;

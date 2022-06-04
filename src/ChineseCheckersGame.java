@@ -80,6 +80,9 @@ public class ChineseCheckersGame {
         int destRow = Common.getCellRow(CCBoard, bestMove.destCell);
         int destCol = Common.getCellCol(CCBoard, bestMove.destCell);
 
+        System.out.println("PC Source Move (row col): " + srcRow + " " + srcCol);
+        System.out.println("PC Destination Move (row col): " + destRow + " " + destCol);
+
         MarbleNode src = CCBoard.board[srcRow][srcCol];
         MarbleNode dest = CCBoard.board[destRow][destCol];
 
