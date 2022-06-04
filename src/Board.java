@@ -36,12 +36,14 @@ public class Board {
     public static ArrayList<Character> humanMarbles = new ArrayList<>(Arrays.asList('G', 'B', 'P'));
     public static ArrayList<Character> pcMarbles = new ArrayList<>(Arrays.asList('R', 'O', 'Y'));
 
+    public static ArrayList<Integer> redGoalCells = new ArrayList<>(Arrays.asList(12, 36, 38, 60, 62, 64, 84, 86, 88, 90));
+    public static ArrayList<Integer> greenGoalCells = new ArrayList<>(Arrays.asList(412, 386, 388, 360, 362, 364, 334, 336, 338, 340));
+
     // -----------------------------------------------------------------------------------------------
 
     public ArrayList<Integer> greenMarbleCells;
     public ArrayList<Integer> redMarbleCells;
-    public static ArrayList<Integer> redGoal = new ArrayList<>(Arrays.asList(12, 36, 38, 60, 62, 64, 84, 86, 88, 90));
-    public static ArrayList<Integer> greenGoal = new ArrayList<>(Arrays.asList(412, 386, 388, 360, 362, 364, 334, 336, 338, 340));
+    
     public MarbleNode[][] board;
 
     Board(){
@@ -94,10 +96,6 @@ public class Board {
     }
     
     public void print(){
-        System.out.println("Red Marbles Cells");
-        System.out.println(this.redMarbleCells);
-        System.out.println("Green Marbles Cells");
-        System.out.println(this.greenMarbleCells);
         System.out.print("\n  ");
 
         for(int i = 0 ; i < board[0].length ; i++){

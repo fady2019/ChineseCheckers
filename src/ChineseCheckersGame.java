@@ -47,7 +47,7 @@ public class ChineseCheckersGame {
         MarbleNode src = CCBoard.board[srcRow][srcCol];
 
         if(!Board.humanMarbles.contains(src.marble)){
-            throw new Exception("Can't move this marble!");
+            throw new Exception("Can't move this marble! (You're trying to move a PC marble)");
         }
 
         if(src == null || !src.getAvailability() || src.marble == ' '){
@@ -73,12 +73,20 @@ public class ChineseCheckersGame {
         }     
     }
 
-    public static void pcMove(){
+    public static void pcMove(int diffLevel){
+        MoveInfo bestMove = MinMax.minMax(Common.Player.PC, diffLevel, CCBoard, true);
+        int srcRow = Common.getCellRow(CCBoard, bestMove.srcCell);
+        int srcCol = Common.getCellCol(CCBoard, bestMove.srcCell);
+        int destRow = Common.getCellRow(CCBoard, bestMove.destCell);
+        int destCol = Common.getCellCol(CCBoard, bestMove.destCell);
 
+        MarbleNode src = CCBoard.board[srcRow][srcCol];
+        MarbleNode dest = CCBoard.board[destRow][destCol];
+
+        doMove(Common.Player.PC, src, dest, srcRow, srcCol, destRow, destCol);
     }
 
-    public static void getState(){
-        System.out.println("Human: " + humanCounter);
-        System.out.println("PC: " + pcCounter);
+    public static int getState(){
+        return humanCounter == 10 ? 1 : pcCounter == 10 ? -1 : 0;
     }
 }
