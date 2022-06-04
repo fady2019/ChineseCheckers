@@ -23,32 +23,28 @@ public class MinMax
     
     private static MoveInfo utilityFun(Board board){
     	MoveInfo info = new MoveInfo();
-    	int humanDistance = 0;
-    	int compDistance = 0;
+    	float humanDistance = 0;
+    	float compDistance = 0;
 
-    	int greenMarbleGoalIdx = Board.greenGoalCells.size()-1;
     	for(int i=0; i<board.greenMarbleCells.size(); i++)
     	{
-    		int goalRow = Common.getCellRow(board, Board.redGoalCells.get(greenMarbleGoalIdx));
-			int goalCol = Common.getCellCol(board, Board.redGoalCells.get(greenMarbleGoalIdx));
+    		int goalRow = Common.getCellRow(board, Board.greenGoalCells.get(i));
+			int goalCol = Common.getCellCol(board, Board.greenGoalCells.get(i));
 			int greenRow = Common.getCellRow(board, board.greenMarbleCells.get(i));
 			int greenCol = Common.getCellCol(board, board.greenMarbleCells.get(i));
-			greenMarbleGoalIdx--;
-			humanDistance += getDistanceBetween(greenRow, greenCol, goalRow, goalCol);
+			humanDistance += Math.abs(greenCol - goalCol) + Math.abs(greenRow - goalRow) ;
     	}
        
-    	int redMarbleGoalIdx = 0;
     	for(int i=0; i<board.redMarbleCells.size(); i++)
     	{
-    		int goalRow = Common.getCellRow(board, Board.greenGoalCells.get(redMarbleGoalIdx));
-			int goalCol = Common.getCellCol(board, Board.greenGoalCells.get(redMarbleGoalIdx));
+    		int goalRow = Common.getCellRow(board, Board.redGoalCells.get(i));
+			int goalCol = Common.getCellCol(board, Board.redGoalCells.get(i));
 			int redRow = Common.getCellRow(board, board.redMarbleCells.get(i));
 			int redCol = Common.getCellCol(board, board.redMarbleCells.get(i));
-			redMarbleGoalIdx++;
-			compDistance += getDistanceBetween(goalRow, goalCol, redRow, redCol);
+			compDistance += Math.abs(redCol - goalCol) + Math.abs(redRow - goalRow) ;
     	}
 
-    	info.val = compDistance-humanDistance;
+    	info.val = (int) -(compDistance-humanDistance);
 
         return info;
     }
